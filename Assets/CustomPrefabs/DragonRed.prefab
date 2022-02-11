@@ -876,7 +876,7 @@ GameObject:
   - component: {fileID: 3678422220272762964}
   m_Layer: 0
   m_Name: DragonRed
-  m_TagString: Untagged
+  m_TagString: Dragon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -942,6 +942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyEffectParticle: {fileID: 186015326897921555, guid: 0298a5a79962b4c79b235ac7b3496e03, type: 3}
+  goal: {fileID: 0}
 --- !u!1 &3071243234471595865
 GameObject:
   m_ObjectHideFlags: 0

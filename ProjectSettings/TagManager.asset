@@ -8,6 +8,10 @@ TagManager:
   - DragonFire
   - DragonGrass
   - Sword
+  - Dragon
+  - Goal
+  - Floor
+  - Barrier
   layers:
   - Default
   - TransparentFX
