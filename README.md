@@ -1,4 +1,4 @@
-# Starburst Stream !!!
+# Starburst Stream
 
 ## Introduction
 
