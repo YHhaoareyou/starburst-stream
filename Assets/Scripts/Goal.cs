@@ -22,7 +22,7 @@ public class Goal : MonoBehaviour
     {
         if (other.CompareTag("Dragon"))
         {
-            Debug.Log("Gameover");
+            //Debug.Log("Gameover");
 
             // Play destroy effect
             GameObject destroyEffect = Instantiate(destroyEffectParticle, transform.position, Quaternion.identity);
@@ -32,6 +32,7 @@ public class Goal : MonoBehaviour
             GameObject[] dragons = GameObject.FindGameObjectsWithTag("Dragon");
             for (var i = 0; i < dragons.Length; i++)
                 Destroy(dragons[i]);
+            //Destroy(other.gameObject);
 
             // Destroy dragon spawner
             Destroy(dragonSpawner);

@@ -10,7 +10,7 @@ public class DragonSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnDragon", 10, 2);
+        InvokeRepeating("SpawnDragon", 10, 5);
     }
 
     // Update is called once per frame
@@ -22,7 +22,15 @@ public class DragonSpawner : MonoBehaviour
     void SpawnDragon()
     {
         int dragonIdx = Random.Range(0, 3);
-        Vector3 spawnPosition = (goal.transform.position + Random.onUnitSphere) * 30;
+        Vector3 spawnPosition = (goal.transform.position + UpperFrontSpherePos()) * 30;
         Instantiate(dragons[dragonIdx], spawnPosition, Quaternion.LookRotation(goal.transform.position - spawnPosition));
+    }
+
+    private Vector3 UpperFrontSpherePos()
+    {
+        Vector3 pos = Random.onUnitSphere;
+        pos.y = Mathf.Abs(pos.y);
+        pos.z = Mathf.Abs(pos.z);
+        return pos;
     }
 }
