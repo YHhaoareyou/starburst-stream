@@ -651,7 +651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -8.49
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e31c57d72d4e421db189103b2f4308e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyEffectParticle: {fileID: 5566408331478174300, guid: 9af6988687c474afa868219ff7252a46, type: 3}
+  destroyEffectParticle: {fileID: 4669976320778208806, guid: cd21e90b145644a1d98e46dcaacbbe61, type: 3}
   dragonSpawner: {fileID: 852462143}
 --- !u!54 &1945869507
 Rigidbody:
