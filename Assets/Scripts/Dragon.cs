@@ -5,7 +5,9 @@ using UnityEngine;
 public class Dragon : MonoBehaviour
 {
     public GameObject destroyEffectParticle;
-    public GameObject goal;
+    public AudioClip destroyAudioClip;
+
+    private GameObject goal;
     private float speedOffset;
 
     // Start is called before the first frame update
@@ -22,12 +24,17 @@ public class Dragon : MonoBehaviour
         transform.position += moveDir * Time.deltaTime * (speedOffset + DragonSpawner.level);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Sword"))
         {
-            // Destroy effect
+            // Play destroy sound effect
+            AudioSource.PlayClipAtPoint(destroyAudioClip, gameObject.transform.position);
+
+            // Destroy particle effect
             GameObject destroyEffect = Instantiate(destroyEffectParticle, transform.position, Quaternion.identity);
+
             // Destroy the dragon
             Destroy(destroyEffect, 3);
             Destroy(gameObject);

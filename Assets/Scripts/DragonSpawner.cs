@@ -18,7 +18,7 @@ public class DragonSpawner : MonoBehaviour
     void Start()
     {
         levelUpInterval = 40;
-        spawnInterval = 10;
+        spawnInterval = 5;
         level = 0;
         mode = "hard";
         spawnIntervalOffset = (mode == "hard") ? 5.5f : 7;

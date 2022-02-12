@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyEffectParticle: {fileID: 487315846441231735, guid: 7f183d56008784a95883292d70eb8d4e, type: 3}
-  goal: {fileID: 0}
+  destroyAudioClip: {fileID: 8300000, guid: 37c60a21c8562489aa0cb1988dcb52ee, type: 3}
 --- !u!1 &5489682736593841892
 GameObject:
   m_ObjectHideFlags: 0
