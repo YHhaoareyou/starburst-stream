@@ -22,8 +22,6 @@ public class Goal : MonoBehaviour
     {
         if (other.CompareTag("Dragon"))
         {
-            //Debug.Log("Gameover");
-
             // Play destroy effect
             GameObject destroyEffect = Instantiate(destroyEffectParticle, transform.position, Quaternion.identity);
             Destroy(destroyEffect, 5);

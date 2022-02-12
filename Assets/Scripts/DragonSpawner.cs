@@ -7,15 +7,41 @@ public class DragonSpawner : MonoBehaviour
     public List<GameObject> dragons = new List<GameObject>(3);
     public GameObject goal;
 
+    public static float level;
+    public static string mode;
+
+    private float levelUpInterval;
+    private float spawnInterval;
+    private float spawnIntervalOffset;
+
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnDragon", 10, 5);
+        levelUpInterval = 40;
+        spawnInterval = 10;
+        level = 0;
+        mode = "hard";
+        spawnIntervalOffset = (mode == "hard") ? 5.5f : 7;
     }
 
     // Update is called once per frame
     void Update()
     {
+        spawnInterval -= Time.deltaTime;
+        if (spawnInterval < 0)
+        {
+            SpawnDragon();
+            spawnInterval = spawnIntervalOffset - level / 2;
+
+        }
+
+        if (level < 9) levelUpInterval -= Time.deltaTime;
+        if (levelUpInterval < 0)
+        {
+            level++;
+            levelUpInterval = 30;
+            Debug.Log("Level Up: " + level);
+        }
         
     }
 
