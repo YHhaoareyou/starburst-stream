@@ -38,7 +38,7 @@ public class Goal : MonoBehaviour
             //Destroy(other.gameObject);
 
             // Stop dragon spawner
-            DragonSpawner.Stop();
+            dragonSpawner.GetComponent<DragonSpawner>().Stop();
 
             // Display restart button
             GameObject restartButton = GameObject.FindGameObjectsWithTag("RestartButton")[0];

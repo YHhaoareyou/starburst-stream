@@ -20,10 +20,16 @@ public class DragonSpawner : MonoBehaviour
     private int lastScore;
     private static bool isPlaying;
 
+    GameObject startButton;
+    GameObject restartButton;
+
     // Start is called before the first frame update
     void Start()
     {
         isPlaying = false;
+
+        startButton = GameObject.FindGameObjectsWithTag("StartButton")[0];
+        restartButton = GameObject.FindGameObjectsWithTag("RestartButton")[0];
     }
 
     // Update is called once per frame
@@ -45,7 +51,7 @@ public class DragonSpawner : MonoBehaviour
 
             }
 
-            if (level < 9) levelUpInterval -= Time.deltaTime;
+            if (level < 4) levelUpInterval -= Time.deltaTime;
             if (levelUpInterval < 0)
             {
                 level++;
@@ -72,23 +78,22 @@ public class DragonSpawner : MonoBehaviour
         score = 0;
         lastScore = 0;
         mode = "hard";
-        spawnIntervalOffset = (mode == "hard") ? 5.5f : 7;
+        spawnIntervalOffset = (mode == "hard") ? 3 : 5;
 
-        // Display start/restart button
-        GameObject startButton = GameObject.FindGameObjectsWithTag("StartButton")[0];
+        // Hide start/restart button
         startButton.SetActive(false);
-        GameObject restartButton = GameObject.FindGameObjectsWithTag("RestartButton")[0];
         restartButton.SetActive(false);
     }
 
-    static public void Stop()
+    public void Stop()
     {
         isPlaying = false;
+        restartButton.SetActive(true);
     }
 
     private Vector3 UpperFrontSpherePos()
     {
-        Vector3 pos = Random.onUnitSphere;
+        Vector3 pos = new Vector3(0, 0, 0) + Random.onUnitSphere;
         pos.y = Mathf.Abs(pos.y);
         pos.z = Mathf.Abs(pos.z);
         return pos;

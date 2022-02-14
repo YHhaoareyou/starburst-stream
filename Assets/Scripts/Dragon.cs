@@ -15,7 +15,7 @@ public class Dragon : MonoBehaviour
     void Start()
     {
         goal = GameObject.FindGameObjectsWithTag("Goal")[0];
-        speedOffset = DragonSpawner.mode == "hard" ? 5 : 3;
+        speedOffset = DragonSpawner.mode == "hard" ? 10 : 8;
     }
 
     // Update is called once per frame
