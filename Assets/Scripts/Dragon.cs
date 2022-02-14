@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dragon : MonoBehaviour
 {
@@ -34,9 +35,12 @@ public class Dragon : MonoBehaviour
 
             // Destroy particle effect
             GameObject destroyEffect = Instantiate(destroyEffectParticle, transform.position, Quaternion.identity);
-
-            // Destroy the dragon
             Destroy(destroyEffect, 3);
+
+            // Score + 10
+            DragonSpawner.score += 10;
+            
+            // Destroy the dragon
             Destroy(gameObject);
         }
         //if (other.CompareTag("Barrier"))

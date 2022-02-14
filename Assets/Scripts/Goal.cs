@@ -37,8 +37,12 @@ public class Goal : MonoBehaviour
                 Destroy(dragons[i]);
             //Destroy(other.gameObject);
 
-            // Destroy dragon spawner
-            Destroy(dragonSpawner);
+            // Stop dragon spawner
+            DragonSpawner.Stop();
+
+            // Display restart button
+            GameObject restartButton = GameObject.FindGameObjectsWithTag("RestartButton")[0];
+            restartButton.SetActive(true);
 
             // Destroy goal itself
             Destroy(gameObject);
