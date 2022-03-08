@@ -11,17 +11,16 @@ public class DragonSpawner : MonoBehaviour
     public Text scoreText;
 
     public static float level;
-    public static string mode;
     public static int score;
 
     private float levelUpInterval;
+    private float levelUpIntervalConst;
     private float spawnInterval;
     private float spawnIntervalOffset;
     private int lastScore;
     private static bool isPlaying;
 
-    GameObject startButton;
-    GameObject restartButton;
+    GameObject startButton, startHardButton, restartButton;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +28,7 @@ public class DragonSpawner : MonoBehaviour
         isPlaying = false;
 
         startButton = GameObject.FindGameObjectsWithTag("StartButton")[0];
+        startHardButton = GameObject.FindGameObjectsWithTag("StartHardButton")[0];
         restartButton = GameObject.FindGameObjectsWithTag("RestartButton")[0];
     }
 
@@ -48,16 +48,20 @@ public class DragonSpawner : MonoBehaviour
             {
                 SpawnDragon();
                 spawnInterval = spawnIntervalOffset - level / 2;
-
+                Debug.Log(spawnInterval);
             }
 
-            if (level < 4) levelUpInterval -= Time.deltaTime;
+            if (level < 5) levelUpInterval -= Time.deltaTime;
             if (levelUpInterval < 0)
             {
                 level++;
-                levelUpInterval = 30;
+                levelUpInterval = levelUpIntervalConst;
                 Debug.Log("Level Up: " + level);
-                levelText.text = ((int)level).ToString();
+                if (level < 5) {
+                    levelText.text = ((int)level + 1).ToString();
+                } else {
+                    levelText.text = "∞";
+                }
             }
         }
     }
@@ -65,23 +69,49 @@ public class DragonSpawner : MonoBehaviour
     void SpawnDragon()
     {
         int dragonIdx = Random.Range(0, 3);
-        Vector3 spawnPosition = (goal.transform.position + UpperFrontSpherePos()) * 30;
+        Vector3 spawnNormVector = UpperFrontSpherePos();
+        Vector3 spawnPosition = goal.transform.position + spawnNormVector * 30;
+        // Debug.Log("===========");
+        // Debug.Log("goal: " + goal.transform.position);
+        // Debug.Log("spawnNormVector: " + spawnNormVector);
+        // Debug.Log("spawnPosition: " + spawnPosition);
+        // Debug.Log("===========");
         Instantiate(dragons[dragonIdx], spawnPosition, Quaternion.LookRotation(goal.transform.position - spawnPosition));
     }
 
     public void Initialize()
     {
+        Debug.Log("Start!");
         isPlaying = true;
-        levelUpInterval = 40;
+        levelUpInterval = 30;
+        levelUpIntervalConst = 30;
         spawnInterval = 5;
         level = 0;
         score = 0;
         lastScore = 0;
-        mode = "hard";
-        spawnIntervalOffset = (mode == "hard") ? 3 : 5;
+        spawnIntervalOffset = 3;
 
         // Hide start/restart button
         startButton.SetActive(false);
+        startHardButton.SetActive(false);
+        restartButton.SetActive(false);
+    }
+
+    public void InitializeHard()
+    {
+        Debug.Log("Challenge!");
+        isPlaying = true;
+        levelUpInterval = 10;
+        levelUpIntervalConst = 10;
+        spawnInterval = 5;
+        level = 0;
+        score = 0;
+        lastScore = 0;
+        spawnIntervalOffset = 3;
+
+        // Hide start/restart button
+        startButton.SetActive(false);
+        startHardButton.SetActive(false);
         restartButton.SetActive(false);
     }
 
@@ -96,6 +126,16 @@ public class DragonSpawner : MonoBehaviour
         Vector3 pos = new Vector3(0, 0, 0) + Random.onUnitSphere;
         pos.y = Mathf.Abs(pos.y);
         pos.z = Mathf.Abs(pos.z);
+        if (pos.y > pos.z) {
+            float tmp = pos.y;
+            pos.y = pos.z;
+            pos.z = tmp;
+        }
+        if (pos.x > 0.5f) {
+            pos.x -= 0.5f;
+        } else if (pos.x < -0.5f) {
+            pos.x += 0.5f;
+        }
         return pos;
     }
 }

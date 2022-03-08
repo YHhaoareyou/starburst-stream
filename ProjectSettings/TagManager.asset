@@ -16,6 +16,7 @@ TagManager:
   - RestartButton
   - ScoreText
   - LevelText
+  - StartHardButton
   layers:
   - Default
   - TransparentFX
